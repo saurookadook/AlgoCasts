@@ -11,6 +11,94 @@
 // class.  Contains should accept a 'data' argument
 // and return the Node in the tree with the same value.
 
-class Node {}
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.left = null
+    this.right = null
+  }
+
+  insert(data) {
+    if (data < this.data) {
+      if (!this.left) {
+        this.left = new Node(data);
+      } else {
+        this.left.insert(data);
+      }
+    } else if (data > this.data) {
+      if (!this.right) {
+        this.right = new Node(data);
+      } else {
+        this.right.insert(data);
+      }
+    }
+  }
+
+  contains(data) {
+    if (this.data === data) {
+      return this;
+    }
+
+    if (this.data < data && this.right) {
+      return this.right.contains(data);
+    } else if (this.data > data && this.left) {
+      return this.left.contains(data);
+    }
+    
+    // if (this.left) {
+    //   if (data === this.left.data) {
+    //     return this.left;
+    //   } else if (data < this.left.data) {
+    //     return this.left.contains(data);
+    //   }
+    // }
+
+    // if (this.right) {
+    //   if (data === this.right.data) {
+    //     return this.right;
+    //   } else if (data > this.right.data) {
+    //     return this.right.contains(data);
+    //   }
+    // }
+
+    return null;
+  }
+}
 
 module.exports = Node;
+
+
+// SG SOLUTIONS
+class SgNode {
+  constructor(data) {
+    this.data = data;
+    this.left = null
+    this.right = null
+  }
+
+  insert(data) {
+    if (data < this.data && this.left) {
+      this.left.insert(data);
+    } else if (data < this.data) {
+      this.left = new Node(data);
+    } else if (data > this.data && this.right) {
+      this.right.insert(data);
+    } else if (data > this.data) {
+      this.right = new Node(data);
+    }
+  }
+
+  contains(data) {
+    if (this.data === data) {
+      return this;
+    }
+
+    if (this.data < data && this.right) {
+      return this.right.contains(data);
+    } else if (this.data > data && this.left) {
+      return this.left.contains(data);
+    }
+
+    return null;
+  }
+}

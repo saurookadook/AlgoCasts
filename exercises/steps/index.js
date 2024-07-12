@@ -17,6 +17,61 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+function steps(n, row = 0, stair = '') {
+  if (n === row) {
+    return;
+  }
+
+  if (n === status.length) {
+    console.log(stair);
+    steps(n, row + 1);
+  }
+
+  // if (stair.length <= row) {
+  //   stair += '#';
+  // } else {
+  //   stair += ' ';
+  // }
+  // refactor:
+  const add = stair.length <= row ? '#' : ' ';
+
+  steps(n, row, stair + add);
+}
 
 module.exports = steps;
+
+
+// MINE
+// function steps(n) {
+//   i = 1;
+//   let poundStr = '';
+
+//   while (i <= n) {
+//     poundStr = poundStr.trimEnd() + '#';
+//     if (i !== n) {
+//       poundStr = poundStr.padEnd(n);
+//     }
+//     console.log(poundStr);
+//     i++;
+//   }
+// }
+
+
+// SG SOLUTION 1
+// function steps(n) {
+//   for (let row = 0; row < n; row++) {
+//     let stair = '';
+
+//     for (let column = 0; column < n; column++) {
+//       if (column <= row) {
+//         stair += '#';
+//       } else {
+//         stair += ' ';
+//       }
+//     }
+
+//     console.log(stair);
+//   }
+// }
+
+// SG SOLUTION 2 (recursive)
