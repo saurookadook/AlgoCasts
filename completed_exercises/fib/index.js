@@ -30,19 +30,34 @@ function slowFib(n) {
   return fib(n - 1) + fib(n - 2);
 }
 
-const fib = memoize(slowFib);
+// const fib = memoize(slowFib);
 
 module.exports = fib;
 
 // function fib(n) {
 //   const result = [0, 1];
-//
+
 //   for (let i = 2; i <= n; i++) {
 //     const a = result[i - 1];
 //     const b = result[i - 2];
-//
+
 //     result.push(a + b);
 //   }
-//
+
 //   return result[n];
 // }
+
+function fib(n) {
+    if (n < 2) {
+        return n;
+    }
+
+    const resultsInverseQueue = [1, 0];
+
+    for (let i = 2; i <= n; i++) {
+        const earliest = resultsInverseQueue.pop();
+        resultsInverseQueue.unshift(resultsInverseQueue[0] + earliest);
+    }
+
+    return resultsInverseQueue[0]
+}

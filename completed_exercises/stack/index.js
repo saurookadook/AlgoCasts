@@ -24,7 +24,8 @@ class Stack {
   }
 
   peek() {
-    return this.data[this.data.length - 1];
+    const lastIndex = this.data.length > 0 ? this.data.length - 1 : 0;
+    return this.data[lastIndex];
   }
 }
 

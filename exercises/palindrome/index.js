@@ -21,10 +21,10 @@ module.exports = palindrome;
 
 // MINE
 // function palindrome(str) {
-//   let reversed = str.split('').reduce((rev, char) => { 
+//   let reversed = str.split('').reduce((rev, char) => {
 //     return char + rev;
 //   }, '');
-  
+
 //   return reversed === str ? true : false;
 // }
 
@@ -32,7 +32,7 @@ module.exports = palindrome;
 // SG SOLUTION 1
 // function palindrome(str) {
 //   const reversed = str.split('').reverse().join('');
-  
+
 //   return reversed === str;
 // }
 

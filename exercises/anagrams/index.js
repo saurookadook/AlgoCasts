@@ -8,18 +8,18 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-const simplifyLetters = string => {
-  return string.toLowerCase().match(/([A-Z])/gi).reduce((obj, char) => {
+const buildLetterCountMap = string => {
+  return string.match(/([A-Z])/gi).reduce((obj, char) => {
     // alternatively:
     // obj[char] = obj[char] + 1 || 1;
     // return obj
     if (obj[char]) {
       obj[char] += 1;
-      return obj;
     } else if (char !== " ") {
       obj[char] = 1;
-      return obj;
     }
+
+    return obj;
   }, {});
 }
 
@@ -27,9 +27,9 @@ function anagrams(stringA, stringB) {
   let judgement = false; // lol
 
   if (stringA.length === stringB.length) {
-    let lettersOne = stringA.length >= stringB.length ? simplifyLetters(stringA) : simplifyLetters(stringB);
-    let lettersTwo = stringA.length <= stringB.length ? simplifyLetters(stringB) : simplifyLetters(stringA);
-    
+    let lettersOne = stringA.length >= stringB.length ? buildLetterCountMap(stringA) : buildLetterCountMap(stringB);
+    let lettersTwo = stringA.length <= stringB.length ? buildLetterCountMap(stringB) : buildLetterCountMap(stringA);
+
     Object.keys(lettersOne).forEach(key => {
       judgement = lettersOne[key] === lettersTwo[key];
     });
@@ -63,7 +63,7 @@ module.exports = anagrams;
 //   if (stringA.length === stringB.length) {
 //     let lettersOne = stringA.length >= stringB.length ? simplifyLetters(stringA) : simplifyLetters(stringB);
 //     let lettersTwo = stringA.length <= stringB.length ? simplifyLetters(stringB) : simplifyLetters(stringA);
-    
+
 //     Object.keys(lettersOne).forEach(key => {
 //       judgement = lettersOne[key] === lettersTwo[key];
 //     });
